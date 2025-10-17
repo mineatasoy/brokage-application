@@ -57,6 +57,7 @@ public class BrokageServiceTests {
         // when
         when(assetRepository.findByCustomerIdAndAssetName(customerId, Constants.ASSET_TRY)).thenReturn(mockAsset);
 
+        //execute
         Order order = Order.builder().orderId(Long.valueOf("111111")).assetName("ASSET1").orderSide(SideEnum.BUY.name()).size(1).createDate(LocalDate.now()).price(20).customerId("12345").build();
         OrderResponse response = OrderResponse.builder().order(order).message(Constants.ORDER_CREATED_SUCCESSFULLY).build();
         OrderResponse result = brokerageService.createOrder(order);
@@ -76,6 +77,7 @@ public class BrokageServiceTests {
         //when
         when(assetRepository.findByCustomerIdAndAssetName(customerId, Constants.ASSET_TRY)).thenReturn(mockAsset);
 
+        //execute
         Order order = Order.builder().orderId(Long.valueOf("111111")).assetName("ASSET1").orderSide(SideEnum.BUY.name()).size(1).createDate(LocalDate.now()).price(20).customerId("12345").build();
         OrderResponse response = OrderResponse.builder().order(order).message(Constants.ORDER_CREATE_USABLESIZE_NOT_AVAILABLE).build();
         OrderResponse result = brokerageService.createOrder(order);
@@ -95,6 +97,7 @@ public class BrokageServiceTests {
         // when
         when(orderRepository.findById("111111")).thenReturn(Optional.of(order));
 
+        //execute
         OrderResponse result = brokerageService.cancelOrder(order.getOrderId().toString());
 
         // then
@@ -112,6 +115,7 @@ public class BrokageServiceTests {
         // when
         when(orderRepository.findById("111111")).thenReturn(Optional.of(order));
 
+        //execute
         OrderResponse result = brokerageService.cancelOrder(order.getOrderId().toString());
 
         // then
